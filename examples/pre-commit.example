@@ -1,10 +1,10 @@
 #!/bin/sh
 
-# This is an example of what adding gitleaks to a pre-commit hook would look like.
-
 gitleaksEnabled=$(git config --bool hooks.gitleaks)
-cmd="/Users/zrice/go/src/github.com/zricethezav/gitleaks/gitleaks --verbose --redact --pretty"
-if [ $gitleaksEnabled == "true" ]; then
+
+cmd="docker run --rm --name=gitleaks -v `pwd`/:/code/ zricethezav/gitleaks -v --repo-path=/code/ --uncommitted --pretty"
+
+if [ "$gitleaksEnabled" != "false" ]; then
     $cmd
     if [ $? -eq 1 ]; then
 cat <<\EOF
@@ -16,4 +16,10 @@ If you know what you are doing you can disable this check using:
 EOF
 exit 1
     fi
+else
+  git config hooks.gitleaks true
+cat <<\EOF
+Warning: git commit was run without gitleaks enabled.  It has been re-enabled to run when git commit is run.
+EOF
+exit 0
 fi
