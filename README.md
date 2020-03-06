@@ -5,6 +5,11 @@
   </p>
 </p>
 
+# Cisco Edition
+
+This is a modified version of [https://github.com/zricethezav/gitleaks] to include a cisco.toml configuration file that includes Cisco-specific patterns.  To use these patterns, you must include a `--config=examples/cisco.toml` option.
+
+
 ### [Gitleaks Action](https://github.com/marketplace/actions/gitleaks) now available for your workflows!
 
 
@@ -135,4 +140,3 @@ If using gitleaks has made your job easier consider [sponsoring me](https://gith
 ----
 #### Logo Attribution
 The Gitleaks logo uses the Git Logo created <a href="https://twitter.com/jasonlong">Jason Long</a> is licensed under the <a href="https://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>.
-
