@@ -1,9 +1,9 @@
 .PHONY: test test-cover build release-builds
 
 VERSION := `git fetch --tags && git tag | sort -V | tail -1`
-PKG=github.com/zricethezav/gitleaks
-LDFLAGS=-ldflags "-X=github.com/zricethezav/gitleaks/v4/version.Version=$(VERSION)"
-_LDFLAGS="github.com/zricethezav/gitleaks/v4/version.Version=$(VERSION)"
+PKG=www-github3.cisco.com/edwsmith/gitleaks-cisco
+LDFLAGS=-ldflags "-X=www-github3.cisco.com/edwsmith/gitleaks-cisco/v4/version.Version=${VERSION}"
+_LDFLAGS="www-github3.cisco.com/edwsmith/gitleaks-cisco/v4/version.Version=${VERSION}"
 COVER=--cover --coverprofile=cover.out
 
 test-cover:
@@ -18,7 +18,7 @@ test:
 	go test ./... --race $(PKG) -v
 
 test-integration:
-	go test github.com/zricethezav/gitleaks/hosts -v -integration
+	go test www-github3.cisco.com/edwsmith/gitleaks-cisco/tree/master/hosts -v -integration
 
 build:
 	go fmt ./...
@@ -40,6 +40,6 @@ release-builds:
 
 deploy:
 	@echo "$(DOCKER_PASSWORD)" | docker login -u "$(DOCKER_USERNAME)" --password-stdin
-	docker build --build-arg ldflags=$(_LDFLAGS) -f Dockerfile -t zricethezav/gitleaks:latest -t zricethezav/gitleaks:$(VERSION) . 
-	echo "Pushing zricethezav/gitleaks:$(VERSION) and zricethezav/gitleaks:latest"
-	docker push zricethezav/gitleaks
+	docker build --build-arg ldflags=$(_LDFLAGS) -f Dockerfile -t edwsmith/gitleaks-cisco:latest -t edwsmith/gitleak-ciscos:$(VERSION) .
+	echo "Pushing edwsmith/gitleaks-cisco:$(VERSION) and edwsmith/gitleaks-cisco:latest"
+	docker push containers.cisco.com/edwsmith/gitleaks-cisco
