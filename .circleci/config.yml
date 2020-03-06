@@ -22,5 +22,6 @@ jobs:
       - checkout
 
       # specify any bash command here prefixed with `run: `
-      - run: go get -u golang.org/x/lint
+      - run: go get -u golang.org/x/lint/golint  # per https://github.com/golang/lint
+      - run: export PATH=$PATH;`go list -f {{.Target}} golang.org/x/lint/golint`  # add golint to $PATH
       - run: make build
