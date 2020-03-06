@@ -25,3 +25,12 @@ jobs:
       - run: go get -u golang.org/x/lint/golint  # per https://github.com/golang/lint
       - run: export PATH=$PATH;`go list -f {{.Target}} golang.org/x/lint/golint`  # add golint to $PATH
       - run: make build
+      - store_artifacts:
+          path: ./build
+          destination: artifacts
+
+  deploy:
+    docker:
+      - image: circleci/golang:1.14
+      steps:
+        - setup_remote_docker

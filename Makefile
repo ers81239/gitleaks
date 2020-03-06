@@ -37,9 +37,11 @@ release-builds:
 	env GOOS="linux" GOARCH="mips" go build -o "build/gitleaks-linux-mips" $(LDFLAGS)
 	env GOOS="linux" GOARCH="mips" go build -o "build/gitleaks-linux-mips" $(LDFLAGS)
 	env GOOS="darwin" GOARCH="amd64" go build -o "build/gitleaks-darwin-amd64" $(LDFLAGS)
+  docker build --build-arg ldflags=$(_LDFLAGS) -f Dockerfile -t edwsmith/gitleaks-cisco:latest -t edwsmith/gitleaks-cisco:$(VERSION) .
+	docker save edwsmith/gitleaks-cisco:$(VERSION) | gzip > build/gitleaks-cisco:$(VERSION).tar.gz
 
 deploy:
 	@echo "$(DOCKER_PASSWORD)" | docker login -u "$(DOCKER_USERNAME)" --password-stdin
-	docker build --build-arg ldflags=$(_LDFLAGS) -f Dockerfile -t edwsmith/gitleaks-cisco:latest -t edwsmith/gitleak-ciscos:$(VERSION) .
+	# docker build --build-arg ldflags=$(_LDFLAGS) -f Dockerfile -t edwsmith/gitleaks-cisco:latest -t edwsmith/gitleak-ciscos:$(VERSION) .
 	echo "Pushing edwsmith/gitleaks-cisco:$(VERSION) and edwsmith/gitleaks-cisco:latest"
 	docker push containers.cisco.com/edwsmith/gitleaks-cisco

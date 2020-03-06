@@ -1,4 +1,4 @@
-module github.com/zricethezav/gitleaks/v4
+module www-github3.cisco.com/edwsmith/gitleaks-cisco/v4
 
 go 1.13
 
