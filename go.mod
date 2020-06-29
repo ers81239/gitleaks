@@ -8,7 +8,7 @@ require (
 	github.com/google/go-github/v29 v29.0.3
 	github.com/hako/durafmt v0.0.0-20191009132224-3f39dc1ed9f4
 	github.com/jessevdk/go-flags v1.4.0
-	github.com/mattn/go-colorable v0.1.2
+	github.com/mattn/go-colorable v0.1.7
 	github.com/sergi/go-diff v1.0.0
 	github.com/sirupsen/logrus v1.4.2
 	github.com/xanzy/go-gitlab v0.21.0
