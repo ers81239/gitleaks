@@ -11,7 +11,7 @@ require (
 	github.com/mattn/go-colorable v0.1.2
 	github.com/sergi/go-diff v1.0.0
 	github.com/sirupsen/logrus v1.4.2
-	github.com/xanzy/go-gitlab v0.21.0
+	github.com/xanzy/go-gitlab v0.34.1
 	golang.org/x/crypto v0.0.0-20191011191535-87dc89f01550 // indirect
 	golang.org/x/oauth2 v0.0.0-20190604053449-0f29369cfe45
 	gopkg.in/src-d/go-billy.v4 v4.3.2
